@@ -44,7 +44,18 @@ const app = express();
             )
         `);
 
-        console.log("✅ Notices/Academics tables ready");
+        await db.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                user_id SERIAL PRIMARY KEY,
+                full_name TEXT NOT NULL,
+                email TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                role TEXT DEFAULT 'Student',
+                created_at TIMESTAMP DEFAULT NOW()
+            )
+        `);
+
+        console.log("✅ Notices/Academics/Users tables ready");
 
     } catch (error) {
 
