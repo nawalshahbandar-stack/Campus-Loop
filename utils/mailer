@@ -1,0 +1,169 @@
+// ==========================================================
+// CAMPUSLOOP - EMAIL NOTIFICATIONS
+// ==========================================================
+// Sends an email to Students and Teachers whenever Admin
+// creates a new notice. Uses Gmail via nodemailer.
+//
+// Requires EMAIL_USER and EMAIL_PASS in .env
+// (EMAIL_PASS must be a Gmail App Password, not the normal
+// account password — see .env for setup instructions).
+//
+// If EMAIL_USER / EMAIL_PASS are not set, this module simply
+// skips sending and logs a message. It never throws, so a
+// missing/broken email config can never break notice creation.
+
+const nodemailer = require("nodemailer");
+
+let transporter = null;
+let triedToBuildTransporter = false;
+
+
+function getTransporter() {
+
+    if (triedToBuildTransporter) {
+        return transporter;
+    }
+
+    triedToBuildTransporter = true;
+
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+
+        console.log(
+            "EMAIL_USER / EMAIL_PASS not set in .env — " +
+            "notice emails will be skipped."
+        );
+
+        return null;
+
+    }
+
+    transporter = nodemailer.createTransport({
+
+        service: "gmail",
+
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+
+    });
+
+    return transporter;
+
+}
+
+
+function escapeHtml(str) {
+
+    if (str === null || str === undefined) return "";
+
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+}
+
+
+// ==========================================================
+// SEND NOTICE EMAIL
+// ==========================================================
+// recipients: array of email addresses (Students + Teachers)
+// title / message / category: the notice content
+
+async function sendNoticeEmail({ recipients, title, message, category }) {
+
+    const activeTransporter = getTransporter();
+
+    if (!activeTransporter) {
+
+        return {
+            sent: false,
+            reason: "Email not configured (EMAIL_USER/EMAIL_PASS missing)"
+        };
+
+    }
+
+    if (!recipients || recipients.length === 0) {
+
+        return {
+            sent: false,
+            reason: "No recipients"
+        };
+
+    }
+
+    const safeMessage =
+        escapeHtml(message).replace(/\n/g, "<br>");
+
+    const htmlBody = `
+        <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto; padding:10px;">
+
+            <h2 style="color:#3155d9; margin-bottom:4px;">
+                ${escapeHtml(title)}
+            </h2>
+
+            <p style="display:inline-block; background:#eef2ff; color:#3155d9;
+                      padding:4px 10px; border-radius:6px; font-size:12px;
+                      font-weight:bold; margin-bottom:16px;">
+                ${escapeHtml(category || "General")}
+            </p>
+
+            <p style="font-size:15px; color:#333333; line-height:1.6;">
+                ${safeMessage}
+            </p>
+
+            <hr style="border:none; border-top:1px solid #eee; margin-top:30px;">
+
+            <p style="font-size:12px; color:#999999;">
+                This is an automated notice from CampusLoop.
+                Please do not reply to this email.
+            </p>
+
+        </div>
+    `;
+
+    const mailOptions = {
+
+        from: `"CampusLoop" <${process.env.EMAIL_USER}>`,
+
+        // Send "to" itself and put real recipients on BCC so
+        // no student/teacher sees anyone else's email address.
+        to: process.env.EMAIL_USER,
+        bcc: recipients,
+
+        subject: `[CampusLoop Notice] ${title}`,
+
+        html: htmlBody
+
+    };
+
+    try {
+
+        await activeTransporter.sendMail(mailOptions);
+
+        console.log(
+            `Notice email sent to ${recipients.length} recipient(s).`
+        );
+
+        return { sent: true, count: recipients.length };
+
+    } catch (error) {
+
+        console.error(
+            "Notice email failed to send:",
+            error.message
+        );
+
+        return { sent: false, reason: error.message };
+
+    }
+
+}
+
+
+module.exports = {
+    sendNoticeEmail
+};
