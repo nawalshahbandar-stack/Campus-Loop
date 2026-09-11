@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CampusLoop - Academics</title>
+</head>
+
+<body>
+
+    <h1>ðŸ“š Academics</h1>
+
+    <p>Welcome to the Academics page.</p>
+
+    <a href="/student">â† Back to Dashboard</a>
+
+</body>
+
+</html>
