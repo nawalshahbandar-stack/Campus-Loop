@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop - Teacher Dashboard</title>
+
+
+    <style>
+
+        /* ==========================================
+           RESET
+        ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+
+        /* ==========================================
+           BODY
+        ========================================== */
+
+        body {
+
+            background: #f4f7ff;
+
+            color: #1f2937;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* ==========================================
+           NAVBAR
+        ========================================== */
+
+        .navbar {
+
+            height: 70px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+            color: #3155d9;
+
+        }
+
+
+        .logout {
+
+            text-decoration: none;
+
+            background: #3155d9;
+
+            color: white;
+
+            padding: 10px 18px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+
+        }
+
+
+        .logout:hover {
+
+            background: #2443b8;
+
+        }
+
+
+        /* ==========================================
+           MAIN CONTAINER
+        ========================================== */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: 40px auto;
+
+            padding: 0 25px;
+
+        }
+
+
+        /* ==========================================
+           WELCOME
+        ========================================== */
+
+        .welcome {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3155d9,
+                    #6078e8
+                );
+
+            color: white;
+
+            padding: 38px;
+
+            border-radius: 20px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(49, 85, 217, 0.20);
+
+        }
+
+
+        .welcome h1 {
+
+            font-size: 32px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .welcome p {
+
+            font-size: 16px;
+
+            opacity: 0.95;
+
+        }
+
+
+        /* ==========================================
+           SECTION TITLE
+        ========================================== */
+
+        .section-title {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size: 24px;
+
+            color: #111827;
+
+        }
+
+
+        .section-title p {
+
+            margin-top: 5px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==========================================
+           CARDS
+        ========================================== */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0, 0, 0, 0.06);
+
+            border: 1px solid #eef0f7;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        /* ==========================================
+           CARD ICON
+        ========================================== */
+
+        .card-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 14px;
+
+            background: #eef2ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        /* ==========================================
+           CARD TEXT
+        ========================================== */
+
+        .card h2 {
+
+            font-size: 21px;
+
+            color: #111827;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .card p {
+
+            color: #6b7280;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==========================================
+           BUTTON
+        ========================================== */
+
+        .card-button {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            padding: 10px 16px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #3155d9;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .card-button:hover {
+
+            background: #2443b8;
+
+        }
+
+
+        .secondary-button {
+
+            background: #eef2ff;
+
+            color: #3155d9;
+
+        }
+
+
+        .secondary-button:hover {
+
+            background: #e0e7ff;
+
+        }
+
+
+        /* ==========================================
+           PROFILE
+        ========================================== */
+
+        .profile {
+
+            margin-top: 30px;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0, 0, 0, 0.06);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+
+        .profile-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            border-radius: 50%;
+
+            background: #eef2ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+        }
+
+
+        .profile-info h2 {
+
+            font-size: 19px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .profile-info p {
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        /* ==========================================
+           STUDENTS MODAL
+        ========================================== */
+
+        .students-modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.65);
+
+            z-index: 1000;
+
+            padding: 40px 20px;
+
+            overflow-y: auto;
+
+        }
+
+
+        .students-modal-content {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            position: relative;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        /* ==========================================
+           MODAL HEADER
+        ========================================== */
+
+        .students-modal-header {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .students-modal-header h2 {
+
+            font-size: 28px;
+
+            color: #111827;
+
+        }
+
+
+        .students-modal-header p {
+
+            color: #6b7280;
+
+            margin-top: 6px;
+
+            font-size: 14px;
+
+        }
+
+        /* ==========================================
+           NOTICE CARDS
+        ========================================== */
+
+        .notice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .notice-card {
+            background: #f8f9ff;
+            border: 1px solid #e2e6ef;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .notice-card h3 {
+            font-size: 17px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .notice-card p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .notice-card small {
+            display: inline-block;
+            background: #eef2ff;
+            color: #3155d9;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           CLOSE BUTTON
+        ========================================== */
+
+        .students-close {
+
+            position: absolute;
+
+            right: 20px;
+
+            top: 18px;
+
+            width: 42px;
+
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #eef2ff;
+
+            color: #3155d9;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .students-close:hover {
+
+            background: #dfe6ff;
+
+        }
+
+
+        /* ==========================================
+           STUDENT FILTERS
+        ========================================== */
+
+        .student-tools {
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .student-tools input,
+        .student-tools select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d5dbea;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: white;
+
+        }
+
+
+        .student-tools input:focus,
+        .student-tools select:focus {
+
+            border-color: #3155d9;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(49, 85, 217, 0.10);
+
+        }
+
+
+        /* ==========================================
+           STUDENT COUNT
+        ========================================== */
+
+        .student-count {
+
+            background: #f4f6ff;
+
+            color: #3155d9;
+
+            padding: 10px 14px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* ==========================================
+           STUDENT LIST
+        ========================================== */
+
+        .students-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            max-height: 480px;
+
+            overflow-y: auto;
+
+            padding-right: 5px;
+
+        }
+
+
+        /* ==========================================
+           STUDENT CARD
+        ========================================== */
+
+        .student-card {
+
+            border: 1px solid #e2e6ef;
+
+            border-radius: 14px;
+
+            padding: 20px;
+
+            background: #fafbfe;
+
+            transition: 0.2s;
+
+        }
+
+
+        .student-card:hover {
+
+            border-color: #3155d9;
+
+            background: #f5f7ff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* ==========================================
+           STUDENT TOP
+        ========================================== */
+
+        .student-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .student-avatar {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #e8edff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .student-name {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            color: #111827;
+
+        }
+
+
+        .student-email {
+
+            font-size: 13px;
+
+            color: #6b7280;
+
+            margin-top: 3px;
+
+            word-break: break-word;
+
+        }
+
+
+        /* ==========================================
+           STUDENT DETAILS
+        ========================================== */
+
+        .student-details {
+
+            line-height: 1.9;
+
+            font-size: 14px;
+
+            color: #596579;
+
+        }
+
+
+        .student-details strong {
+
+            color: #30394b;
+
+        }
+
+
+        .department-badge {
+
+            display: inline-block;
+
+            margin-top: 5px;
+
+            background: #eef2ff;
+
+            color: #3155d9;
+
+            padding: 5px 9px;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        .year-badge {
+
+            display: inline-block;
+
+            margin-top: 5px;
+
+            background: #ecfdf5;
+
+            color: #047857;
+
+            padding: 5px 9px;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* ==========================================
+           LOADING / EMPTY
+        ========================================== */
+
+        .student-loading,
+        .no-students {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            background: #f8f9fc;
+
+            border-radius: 12px;
+
+            color: #6b7280;
+
+        }
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            color: #9ca3af;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ==========================================
+           TABLET
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+
+                padding: 0 25px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .student-tools {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .students-list {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 18px;
+
+            }
+
+
+            .logo {
+
+                font-size: 21px;
+
+            }
+
+
+            .logout {
+
+                padding: 8px 13px;
+
+                font-size: 12px;
+
+            }
+
+
+            .container {
+
+                margin-top: 25px;
+
+                padding: 0 18px;
+
+            }
+
+
+            .welcome {
+
+                padding: 27px;
+
+            }
+
+
+            .welcome h1 {
+
+                font-size: 25px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .students-modal {
+
+                padding: 15px 10px;
+
+            }
+
+
+            .students-modal-content {
+
+                padding: 22px 18px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     NAVBAR
+========================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+    &#127891; CampusLoop
+</div>
+
+
+    <a
+        href="/logout"
+        class="logout"
+    >
+        Logout
+    </a>
+
+</nav>
+
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="container">
+
+
+    <!-- ======================================
+         WELCOME
+    ======================================= -->
+
+    <section class="welcome">
+
+        <h1 id="welcomeMessage">
+    &#128075; Welcome, Teacher!
+</h1>
+
+
+        <p>
+            Manage college events, reports,
+            and students from one place.
+        </p>
+
+    </section>
+
+
+
+    <!-- ======================================
+         TITLE
+    ======================================= -->
+
+    <div class="section-title">
+
+        <h2>
+            Teacher Dashboard
+        </h2>
+
+        <p>
+            Select an option below to continue.
+        </p>
+
+    </div>
+
+
+
+    <!-- ======================================
+         CARDS
+    ======================================= -->
+
+    <section class="cards">
+
+
+        <!-- EVENTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+    &#128197;
+</div>
+
+            <h2>
+                Events
+            </h2>
+
+            <p>
+                View college events,
+                event documents,
+                attendance and
+                event photos.
+            </p>
+
+
+            <a
+                href="/events"
+                class="card-button"
+            >
+                View Events
+            </a>
+
+        </div>
+
+
+
+        <!-- REPORTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+    &#128196;
+</div>
+
+            <h2>
+                Event Reports
+            </h2>
+
+            <p>
+                Generate and download
+                activity reports for
+                college events.
+            </p>
+
+
+            <a
+                href="/report"
+                class="card-button"
+            >
+                Generate Report
+            </a>
+
+        </div>
+
+
+
+        <!-- STUDENTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+    &#128101;
+</div>
+
+            <h2>
+                Students
+            </h2>
+
+            <p>
+                Search and view student
+                information by name,
+                department and year.
+            </p>
+
+
+            <button
+                type="button"
+                class="card-button"
+                onclick="openStudents()"
+            >
+                View Students
+            </button>
+
+        </div>
+
+
+
+        <!-- NOTICES -->
+
+        <div class="card">
+
+            <div class="card-icon">
+    &#128227;
+</div>
+
+            <h2>
+                Notices
+            </h2>
+
+            <p>
+                View important college
+                notices and announcements.
+            </p>
+
+
+            <button
+    type="button"
+    class="card-button"
+    onclick="openNotices()"
+>
+    View Notices
+</button>
+
+        </div>
+
+
+
+        <!-- PROFILE -->
+
+        <div class="card">
+
+            <div class="card-icon">
+    &#128100;
+</div>
+
+            <h2>
+                My Profile
+            </h2>
+
+            <p>
+                View your teacher account
+                information and profile
+                details.
+            </p>
+
+
+            <button
+                type="button"
+                class="card-button secondary-button"
+                onclick="showProfile()"
+            >
+                View Profile
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ======================================
+         PROFILE SECTION
+    ======================================= -->
+
+    <section
+        class="profile"
+        id="profileSection"
+        style="display:none;"
+    >
+
+        <div class="profile-icon">
+    &#128104;&#8205;&#127979;
+</div>
+
+
+        <div class="profile-info">
+
+            <h2 id="profileName">
+                Teacher
+            </h2>
+
+
+            <p id="profileEmail">
+                Email: Loading...
+            </p>
+
+
+            <p>
+                Role: Teacher
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+<!-- ==========================================
+     NOTICES MODAL
+========================================== -->
+
+<div
+    class="students-modal"
+    id="noticesModal"
+>
+
+    <div class="students-modal-content">
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="students-close"
+            onclick="closeNotices()"
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+
+        <!-- HEADER -->
+
+        <div class="students-modal-header">
+
+            <h2>
+                &#128227; College Notices
+            </h2>
+
+            <p>
+                Important announcements and
+                updates from the college.
+            </p>
+
+        </div>
+
+
+        <!-- NOTICES -->
+
+        <div class="notice-list" id="noticesList">
+
+            <p style="color:#9ca3af;">
+                Loading notices...
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     STUDENTS MODAL
+========================================== -->
+
+<div
+    class="students-modal"
+    id="studentsModal"
+>
+
+
+    <div class="students-modal-content">
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="students-close"
+            onclick="closeStudents()"
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+
+
+        <!-- HEADER -->
+
+        <div class="students-modal-header">
+
+            <h2>
+    &#128101; Students
+</h2>
+
+
+            <p>
+                Search and filter students by
+                department and year.
+            </p>
+
+        </div>
+
+
+
+        <!-- ======================================
+             SEARCH + FILTERS
+        ======================================= -->
+
+        <div class="student-tools">
+
+
+            <!-- SEARCH -->
+
+            <input
+                type="text"
+                id="studentSearch"
+                placeholder="&#128269; Search student by name or email..."
+                oninput="filterStudents()"
+            >
+
+
+
+            <!-- DEPARTMENT -->
+
+            <select
+                id="departmentFilter"
+                onchange="filterStudents()"
+            >
+
+                <option value="all">
+                    All Departments
+                </option>
+
+                <option value="Computer Science">
+                    Computer Science
+                </option>
+
+                <option value="General Science">
+                    General Science
+                </option>
+
+                <option value="BMS">
+                    BMS
+                </option>
+
+                <option value="BAF">
+                    BAF
+                </option>
+
+            </select>
+
+
+
+            <!-- YEAR -->
+
+            <select
+                id="classFilter"
+                onchange="filterStudents()"
+            >
+
+                <option value="all">
+                    All Years
+                </option>
+
+                <option value="First Year">
+                    First Year
+                </option>
+
+                <option value="Second Year">
+                    Second Year
+                </option>
+
+                <option value="Third Year">
+                    Third Year
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- ======================================
+             COUNT
+        ======================================= -->
+
+        <div
+            class="student-count"
+            id="studentCount"
+        >
+            Loading students...
+        </div>
+
+
+
+        <!-- ======================================
+             STUDENT LIST
+        ======================================= -->
+
+        <div
+            class="students-list"
+            id="studentsList"
+        >
+
+            <div class="student-loading">
+
+                Loading students...
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    &copy; 2026 CampusLoop
+    | Teacher Dashboard
+
+</footer>
+
+
+
+<script>
+
+
+/* ==========================================
+   GLOBAL STUDENT DATA
+========================================== */
+
+let allStudents = [];
+
+
+
+/* ==========================================
+   LOAD CURRENT TEACHER
+========================================== */
+
+async function loadTeacher() {
+
+    try {
+
+        const response =
+            await fetch("/api/user");
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "User not logged in"
+            );
+
+        }
+
+
+        const user =
+            await response.json();
+
+
+        /* ==============================
+           CHECK ROLE
+        ============================== */
+
+        if (
+            !user.role ||
+            user.role.toLowerCase() !== "teacher"
+        ) {
+
+            window.location.href =
+                "/login";
+
+            return;
+
+        }
+
+
+        /* ==============================
+           WELCOME
+        ============================== */
+
+        document.getElementById(
+    "welcomeMessage"
+).innerHTML =
+    "&#128075; Welcome, " +
+    user.full_name +
+    "!";
+
+
+        /* ==============================
+           PROFILE
+        ============================== */
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            user.full_name;
+
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent =
+            "Email: " +
+            user.email;
+
+
+    } catch (error) {
+
+        console.error(
+            "User loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* ==========================================
+   PROFILE
+========================================== */
+
+function showProfile() {
+
+    const profile =
+        document.getElementById(
+            "profileSection"
+        );
+
+
+    if (
+        profile.style.display === "none" ||
+        profile.style.display === ""
+    ) {
+
+        profile.style.display =
+            "flex";
+
+    }
+
+    else {
+
+        profile.style.display =
+            "none";
+
+    }
+
+}
+
+/* ==========================================
+   OPEN NOTICES
+========================================== */
+
+function openNotices() {
+
+    const modal =
+        document.getElementById(
+            "noticesModal"
+        );
+
+    if (!modal) {
+
+        console.error(
+            "noticesModal not found"
+        );
+
+        return;
+
+    }
+
+    modal.style.display =
+        "block";
+
+    document.body.style.overflow =
+        "hidden";
+
+    loadNoticesForTeacher();
+
+}
+
+async function loadNoticesForTeacher() {
+
+    const listEl = document.getElementById("noticesList");
+
+    try {
+
+        const response = await fetch("/api/notices");
+
+        if (!response.ok) {
+            listEl.innerHTML = `<p style="color:#9ca3af;">Unable to load notices.</p>`;
+            return;
+        }
+
+        const data = await response.json();
+        const notices = data.notices || [];
+
+        if (notices.length === 0) {
+            listEl.innerHTML = `<p style="color:#9ca3af;">No notices posted yet.</p>`;
+            return;
+        }
+
+        listEl.innerHTML = notices.map(notice => `
+            <div class="notice-card">
+                <h3>${escapeNoticeHtml(notice.title)}</h3>
+                <p>${escapeNoticeHtml(notice.message)}</p>
+                <small>${escapeNoticeHtml(notice.category || "General")}</small>
+            </div>
+        `).join("");
+
+    } catch (error) {
+
+        console.error("Load notices error:", error);
+        listEl.innerHTML = `<p style="color:#9ca3af;">Unable to load notices.</p>`;
+
+    }
+
+}
+
+function escapeNoticeHtml(str) {
+
+    if (str === null || str === undefined) return "";
+
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+}
+
+
+
+/* ==========================================
+   CLOSE NOTICES
+========================================== */
+
+function closeNotices() {
+
+    const modal =
+        document.getElementById(
+            "noticesModal"
+        );
+
+    if (!modal) {
+
+        return;
+
+    }
+
+    modal.style.display =
+        "none";
+
+    document.body.style.overflow =
+        "";
+
+}
+
+/* ==========================================
+   OPEN STUDENTS
+========================================== */
+
+function openStudents() {
+
+    const modal =
+        document.getElementById(
+            "studentsModal"
+        );
+
+
+    modal.style.display =
+        "block";
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    loadStudents();
+
+}
+
+
+
+/* ==========================================
+   CLOSE STUDENTS
+========================================== */
+
+function closeStudents() {
+
+    const modal =
+        document.getElementById(
+            "studentsModal"
+        );
+
+
+    modal.style.display =
+        "none";
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+/* ==========================================
+   LOAD STUDENTS FROM DATABASE
+========================================== */
+
+async function loadStudents() {
+
+    const list =
+        document.getElementById(
+            "studentsList"
+        );
+
+
+    const count =
+        document.getElementById(
+            "studentCount"
+        );
+
+
+    list.innerHTML = `
+        <div class="student-loading">
+            Loading students...
+        </div>
+    `;
+
+
+    count.textContent =
+        "Loading students...";
+
+
+    try {
+
+
+        /* ==============================
+           CALL BACKEND
+        ============================== */
+
+        const response =
+            await fetch(
+                "/api/teacher/students"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load students"
+            );
+
+        }
+
+
+        /* ==============================
+           GET JSON
+        ============================== */
+
+        const data =
+            await response.json();
+
+
+        /* ==============================
+           MAKE SURE ARRAY
+        ============================== */
+
+        if (
+            Array.isArray(data)
+        ) {
+
+            allStudents =
+                data;
+
+        }
+
+        else if (
+            Array.isArray(data.students)
+        ) {
+
+            allStudents =
+                data.students;
+
+        }
+
+        else {
+
+            allStudents = [];
+
+        }
+
+
+        /* ==============================
+           DISPLAY
+        ============================== */
+
+        filterStudents();
+
+
+    } catch (error) {
+
+        console.error(
+            "Student loading error:",
+            error
+        );
+
+
+        count.textContent =
+            "Unable to load students";
+
+
+        list.innerHTML = `
+
+            <div class="no-students">
+
+                &#10060; Unable to load students.
+
+                <br><br>
+
+                Please check that the
+                student API is working.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   FILTER STUDENTS
+========================================== */
+
+function filterStudents() {
+
+
+    const searchInput =
+        document.getElementById(
+            "studentSearch"
+        );
+
+
+    const departmentFilter =
+        document.getElementById(
+            "departmentFilter"
+        );
+
+
+    const classFilter =
+        document.getElementById(
+            "classFilter"
+        );
+
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    const department =
+        departmentFilter.value;
+
+
+    const selectedYear =
+        classFilter.value;
+
+
+
+    /* ======================================
+       FILTER
+    ====================================== */
+
+    const filteredStudents =
+        allStudents.filter(
+            function(student) {
+
+
+                /* ==============================
+                   NAME
+                ============================== */
+
+                const name =
+                    String(
+                        student.full_name || ""
+                    )
+                    .toLowerCase();
+
+
+
+                /* ==============================
+                   EMAIL
+                ============================== */
+
+                const email =
+                    String(
+                        student.email || ""
+                    )
+                    .toLowerCase();
+
+
+
+                /* ==============================
+                   DEPARTMENT
+                ============================== */
+
+                const studentDepartment =
+                    String(
+                        student.department || ""
+                    );
+
+
+
+                /* ==============================
+                   CLASS
+                ============================== */
+
+                const studentClass =
+                    String(
+                        student.class_name || ""
+                    );
+
+
+
+                /* ==============================
+                   SEARCH MATCH
+                ============================== */
+
+                const matchesSearch =
+
+                    name.includes(search) ||
+
+                    email.includes(search);
+
+
+
+                /* ==============================
+                   DEPARTMENT MATCH
+                ============================== */
+
+                const matchesDepartment =
+
+                    department === "all" ||
+
+                    studentDepartment ===
+                        department;
+
+
+
+                /* ==============================
+                   YEAR MATCH
+                ============================== */
+
+                let matchesYear = true;
+
+
+                if (
+                    selectedYear !== "all"
+                ) {
+
+                    const classText =
+                        studentClass.toLowerCase();
+
+
+                    if (
+                        selectedYear ===
+                        "First Year"
+                    ) {
+
+                        matchesYear =
+                            classText.includes(
+                                "first year"
+                            ) ||
+                            classText.includes(
+                                "1st year"
+                            );
+
+                    }
+
+
+                    else if (
+                        selectedYear ===
+                        "Second Year"
+                    ) {
+
+                        matchesYear =
+                            classText.includes(
+                                "second year"
+                            ) ||
+                            classText.includes(
+                                "2nd year"
+                            );
+
+                    }
+
+
+                    else if (
+                        selectedYear ===
+                        "Third Year"
+                    ) {
+
+                        matchesYear =
+                            classText.includes(
+                                "third year"
+                            ) ||
+                            classText.includes(
+                                "3rd year"
+                            );
+
+                    }
+
+                }
+
+
+
+                return (
+
+                    matchesSearch &&
+
+                    matchesDepartment &&
+
+                    matchesYear
+
+                );
+
+            }
+        );
+
+
+
+    /* ======================================
+       DISPLAY
+    ====================================== */
+
+    displayStudents(
+        filteredStudents
+    );
+
+}
+
+
+
+/* ==========================================
+   DISPLAY STUDENTS
+========================================== */
+
+function displayStudents(students) {
+
+    const list =
+        document.getElementById(
+            "studentsList"
+        );
+
+
+    const count =
+        document.getElementById(
+            "studentCount"
+        );
+
+
+    /* ======================================
+       COUNT
+    ====================================== */
+
+    count.textContent =
+
+        students.length +
+
+        (
+            students.length === 1
+                ? " student found"
+                : " students found"
+        );
+
+
+
+    /* ======================================
+       EMPTY
+    ====================================== */
+
+    if (
+        !students ||
+        students.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="no-students">
+
+                &#128269;
+
+                <br><br>
+
+                No students found.
+
+                <br>
+
+                Try changing your
+                search or filters.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    /* ======================================
+       CLEAR LIST
+    ====================================== */
+
+    list.innerHTML = "";
+
+
+
+    /* ======================================
+       CREATE CARDS
+    ====================================== */
+
+    students.forEach(
+        function(student) {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "student-card";
+
+
+
+            /* ==============================
+               TOP SECTION
+            ============================== */
+
+            const top =
+                document.createElement(
+                    "div"
+                );
+
+
+            top.className =
+                "student-top";
+
+
+
+            /* ==============================
+               AVATAR
+            ============================== */
+
+            const avatar =
+                document.createElement(
+                    "div"
+                );
+
+
+            avatar.className =
+                "student-avatar";
+
+
+            avatar.innerHTML =
+    "&#128100;";
+
+
+
+            /* ==============================
+               INFO
+            ============================== */
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+
+            name.className =
+                "student-name";
+
+
+            name.textContent =
+                student.full_name ||
+                "Name not provided";
+
+
+
+            const email =
+                document.createElement(
+                    "div"
+                );
+
+
+            email.className =
+                "student-email";
+
+
+            email.textContent =
+                student.email ||
+                "Email not provided";
+
+
+
+            info.appendChild(
+                name
+            );
+
+
+            info.appendChild(
+                email
+            );
+
+
+
+            top.appendChild(
+                avatar
+            );
+
+
+            top.appendChild(
+                info
+            );
+
+
+
+            /* ==============================
+               DETAILS
+            ============================== */
+
+            const details =
+                document.createElement(
+                    "div"
+                );
+
+
+            details.className =
+                "student-details";
+
+
+
+            /* ==============================
+               DEPARTMENT
+            ============================== */
+
+            const departmentLine =
+                document.createElement(
+                    "div"
+                );
+
+
+            departmentLine.innerHTML =
+    "&#127979; <strong>Department:</strong> ";
+
+
+
+            const departmentBadge =
+                document.createElement(
+                    "span"
+                );
+
+
+            departmentBadge.className =
+                "department-badge";
+
+
+            departmentBadge.textContent =
+                student.department ||
+                "Not provided";
+
+
+            departmentLine.appendChild(
+                departmentBadge
+            );
+
+
+
+            /* ==============================
+               CLASS
+            ============================== */
+
+            const classLine =
+                document.createElement(
+                    "div"
+                );
+
+
+            classLine.innerHTML =
+    "&#127891; <strong>Class:</strong> ";
+
+
+
+            const classBadge =
+                document.createElement(
+                    "span"
+                );
+
+
+            classBadge.className =
+                "year-badge";
+
+
+            classBadge.textContent =
+                student.class_name ||
+                "Not provided";
+
+
+            classLine.appendChild(
+                classBadge
+            );
+
+
+
+            /* ==============================
+               ADD EVERYTHING
+            ============================== */
+
+            details.appendChild(
+                departmentLine
+            );
+
+
+            details.appendChild(
+                classLine
+            );
+
+
+            card.appendChild(
+                top
+            );
+
+
+            card.appendChild(
+                details
+            );
+
+
+            list.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================== */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+
+        const modal =
+            document.getElementById(
+                "studentsModal"
+            );
+
+
+        if (
+            event.target === modal
+        ) {
+
+            closeStudents();
+
+        }
+
+    }
+);
+
+
+
+/* ==========================================
+   ESCAPE KEY
+========================================== */
+
+window.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeStudents();
+
+        }
+
+    }
+);
+
+
+
+/* ==========================================
+   START
+========================================== */
+
+loadTeacher();
+
+
+</script>
+
+
+</body>
+
+</html>

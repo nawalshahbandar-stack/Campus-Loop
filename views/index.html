@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop | Your Campus. Your Community.</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🎓 <span>CampusLoop</span>
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="/login" class="nav-login">Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="hero-tag">
+                🎓 Welcome to CampusLoop
+            </p>
+
+            <h1>
+                Your Campus.<br>
+                <span>Your Community.</span>
+            </h1>
+
+            <p class="hero-description">
+                Connect with students, discover campus events,
+                stay updated with announcements and make your
+                college experience better.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/register" class="btn primary-btn">
+                    Get Started 🚀
+                </a>
+
+                <a href="/login" class="btn secondary-btn">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO CARD -->
+
+        <div class="hero-card">
+
+            <div class="floating-icon">🎓</div>
+
+            <h2>
+                Campus Life,
+                <br>
+                Connected.
+            </h2>
+
+            <p>
+                Everything happening on your campus,
+                all in one place.
+            </p>
+
+            <div class="mini-cards">
+
+                <div>
+                    📚
+                    <span>Academics</span>
+                </div>
+
+                <div>
+                    🎉
+                    <span>Events</span>
+                </div>
+
+                <div>
+                    📢
+                    <span>Notices</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features" id="features">
+
+        <p class="section-tag">
+            ✨ What you can do
+        </p>
+
+        <h2>
+            Everything your campus needs.
+        </h2>
+
+        <p class="section-description">
+            CampusLoop brings students, teachers and
+            administrators together in one simple platform.
+        </p>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Academics
+                </h3>
+
+                <p>
+                    Access academic information and stay
+                    organized with your college activities.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎉
+                </div>
+
+                <h3>
+                    Campus Events
+                </h3>
+
+                <p>
+                    Discover upcoming college events,
+                    workshops and activities.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📢
+                </div>
+
+                <h3>
+                    Announcements
+                </h3>
+
+                <p>
+                    Never miss important notices and
+                    updates from your campus.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Community
+                </h3>
+
+                <p>
+                    Connect with your campus community
+                    and share ideas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="about-content">
+
+            <p class="section-tag">
+                💡 About CampusLoop
+            </p>
+
+            <h2>
+                One platform.
+                <br>
+                One campus community.
+            </h2>
+
+            <p>
+                CampusLoop is designed to make campus life
+                simpler by bringing important college
+                information and activities together.
+            </p>
+
+            <a href="/register" class="btn primary-btn">
+                Join CampusLoop →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="logo">
+            🎓 CampusLoop
+        </div>
+
+        <p>
+            Your Campus. Your Community. Your Loop. 💙
+        </p>
+
+        <p class="copyright">
+            © 2026 CampusLoop. All rights reserved.
+        </p>
+
+    </footer>
+
+	<script>
+
+    fetch("/api/user")
+    .then(response => response.json())
+    .then(user => {
+
+        document.getElementById("studentName").textContent =
+            user.full_name;
+
+    })
+    .catch(error => {
+        console.error("Error loading user:", error);
+    });
+
+</script>
+
+</body>
+
+</html>

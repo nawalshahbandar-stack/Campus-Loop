@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop - Events</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7ff;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: white;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #3155d9;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #3155d9;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 25px;
+        }
+
+        .heading {
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #6b7280;
+        }
+
+        .events {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .event-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .event-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .event-card h2 {
+            margin-bottom: 12px;
+        }
+
+        .event-card p {
+            color: #6b7280;
+            margin: 7px 0;
+        }
+
+        .event-card button {
+            margin-top: 18px;
+            padding: 11px 17px;
+            border: none;
+            border-radius: 8px;
+            background: #3155d9;
+            color: white;
+            cursor: pointer;
+        }
+
+        .event-card button:hover {
+            background: #2443b8;
+        }
+
+        @media (max-width: 700px) {
+
+            .events {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            &#127891; CampusLoop
+        </div>
+
+        <a href="#" id="backDashboard" class="back">
+    &lt;- Back to Dashboard
+</a>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="container">
+
+        <div class="heading">
+
+            <h1>&#127881; College Events</h1>
+
+            <p>
+                View college events and generate event reports.
+            </p>
+
+        </div>
+
+
+        <!-- EVENTS -->
+
+        <section class="events">
+
+
+            <!-- EVENT 1 -->
+
+            <div class="event-card">
+
+                <div class="event-icon">
+                    &#128187;
+                </div>
+
+                <h2>Tech Fest 2026</h2>
+
+                <p>&#128197; Date: 15 August 2026</p>
+
+                <p>&#128205; Venue: College Auditorium</p>
+
+                <p>&#128101; Participants: 150</p>
+
+                <button onclick="generateReport()">
+                    &#128196; Generate PDF Report
+                </button>
+
+            </div>
+
+
+            <!-- EVENT 2 -->
+
+            <div class="event-card">
+
+                <div class="event-icon">
+                    &#127917;
+                </div>
+
+                <h2>Cultural Fest 2026</h2>
+
+                <p>&#128197; Date: 25 August 2026</p>
+
+                <p>&#128205; Venue: College Ground</p>
+
+                <p>&#128101; Participants: 200</p>
+
+                <button onclick="generateReport()">
+                    &#128196; Generate PDF Report
+                </button>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+    // Generate report
+    function generateReport() {
+
+        alert("PDF Report generation will be connected next!");
+
+    }
+
+
+    // Set correct dashboard link according to user role
+    fetch("/api/user")
+        .then(response => response.json())
+        .then(user => {
+
+            const backDashboard = document.getElementById("backDashboard");
+
+            if (user.role === "Student") {
+
+                backDashboard.href = "/student";
+
+            } else if (user.role === "Teacher") {
+
+                backDashboard.href = "/teacher";
+
+            } else if (user.role === "Admin") {
+
+                backDashboard.href = "/admin";
+
+            }
+
+        })
+        .catch(error => {
+
+            console.error("Error getting user:", error);
+
+        });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop - Login</title>
+
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="login-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="login-left">
+
+            <div class="login-logo">
+                CampusLoop
+            </div>
+
+
+            <div class="welcome-content">
+
+                <h1>
+                    Welcome Back!
+                </h1>
+
+                <p>
+                    Manage your campus activities,
+                    events and reports in one place.
+                </p>
+
+
+                <div class="features">
+
+                    <div>
+                        ✓ Manage Campus Events
+                    </div>
+
+                    <div>
+                        ✓ Create Activity Reports
+                    </div>
+
+                    <div>
+                        ✓ Organize Event Documents
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="login-right">
+
+
+            <div class="login-box">
+
+                <h2>
+                    Login
+                </h2>
+
+                <p class="login-subtitle">
+                    Sign in to continue to CampusLoop.
+                </p>
+
+
+                <!-- LOGIN FORM -->
+
+                <form action="/login"
+                      method="POST"
+                      class="login-form">
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+                        Login
+                    </button>
+
+
+                </form>
+
+
+                <p class="login-footer">
+                    CampusLoop • College Activity Management
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

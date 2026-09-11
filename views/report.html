@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop - Activity Report</title>
+
+    <link rel="stylesheet" href="/css/report.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusLoop
+        </div>
+
+        <a href="/teacher" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN PAGE -->
+
+    <main class="page">
+
+        <div class="page-heading">
+
+            <h1>Create Activity Report</h1>
+
+            <p>
+                Enter event details and attach the required documents.
+            </p>
+
+        </div>
+
+
+        <form id="reportForm">
+
+
+            <!-- ====================================== -->
+            <!-- 1. REPORT HEADER -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>1. Report Header</h2>
+
+                <label>College / Header Image</label>
+
+                <input
+                    type="file"
+                    id="headerImage"
+                    accept="image/*"
+                >
+
+                <p class="hint">
+                    Upload your college logo or official header.
+                </p>
+
+                <img
+                    id="headerPreview"
+                    class="header-preview"
+                    style="display:none;"
+                >
+
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>College Name</label>
+
+                        <input
+                            type="text"
+                            id="collegeName"
+                            placeholder="Enter college name"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Department</label>
+
+                        <input
+                            type="text"
+                            id="department"
+                            placeholder="Department of Computer Science"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Academic Year</label>
+
+                        <input
+                            type="text"
+                            id="academicYear"
+                            placeholder="2026-2027"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>IQAC / Document Number</label>
+
+                        <input
+                            type="text"
+                            id="documentNumber"
+                            placeholder="Document number"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- 2. ACTIVITY INFORMATION -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>2. Activity Information</h2>
+
+
+                <div class="form-grid">
+
+
+                    <div class="full">
+
+                        <label>Activity Name *</label>
+
+                        <input
+                            type="text"
+                            id="activityName"
+                            required
+                            placeholder="Example: Tech Fest 2026"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Coordinator Name *</label>
+
+                        <input
+                            type="text"
+                            id="coordinator"
+                            required
+                            placeholder="Coordinator name"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Day & Date</label>
+
+                        <input
+                            type="text"
+                            id="activityDate"
+                            placeholder="15 August 2026"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Time</label>
+
+                        <input
+                            type="text"
+                            id="activityTime"
+                            placeholder="10:30 AM - 1:00 PM"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Venue</label>
+
+                        <input
+                            type="text"
+                            id="venue"
+                            placeholder="College Auditorium"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Number of Participants</label>
+
+                        <input
+                            type="number"
+                            id="participants"
+                            placeholder="150"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Nature of Activity</label>
+
+                        <input
+                            type="text"
+                            id="nature"
+                            placeholder="Academic / Co-curricular"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Type of Activity</label>
+
+                        <input
+                            type="text"
+                            id="activityType"
+                            placeholder="Competition / Workshop"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Schedule</label>
+
+                        <input
+                            type="text"
+                            id="schedule"
+                            placeholder="One-time / Annual"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Funding Source</label>
+
+                        <input
+                            type="text"
+                            id="funding"
+                            placeholder="College / Department"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Amount</label>
+
+                        <input
+                            type="text"
+                            id="amount"
+                            placeholder="₹ 0"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Chief Guest</label>
+
+                        <input
+                            type="text"
+                            id="chiefGuest"
+                            placeholder="Chief guest name"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- 3. OBJECTIVES -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>3. Objectives</h2>
+
+                <textarea
+                    id="objectives"
+                    rows="6"
+                    placeholder="Enter objectives..."
+                ></textarea>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- 4. METHODOLOGY -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>4. Methodology</h2>
+
+                <textarea
+                    id="methodology"
+                    rows="7"
+                    placeholder="Describe how the activity was conducted..."
+                ></textarea>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- 5. OUTCOMES -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>5. Outcomes</h2>
+
+                <textarea
+                    id="outcomes"
+                    rows="6"
+                    placeholder="Enter outcomes..."
+                ></textarea>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- 6. DOCUMENTATION -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>6. Documentation</h2>
+
+
+                <div class="upload-card">
+
+                    <label>Pre-event: Notice</label>
+
+                    <input
+                        type="file"
+                        id="notice"
+                        accept="image/*,.pdf"
+                    >
+
+                    <p id="noticeName"></p>
+
+                </div>
+
+
+                <div class="upload-card">
+
+                    <label>Pre-event: Brochure / Flyer</label>
+
+                    <input
+                        type="file"
+                        id="brochure"
+                        accept="image/*,.pdf"
+                    >
+
+                    <p id="brochureName"></p>
+
+                </div>
+
+
+                <div class="upload-card">
+
+                    <label>During-event: Attendance Sheet</label>
+
+                    <input
+                        type="file"
+                        id="attendance"
+                        accept="image/*,.pdf"
+                    >
+
+                    <p id="attendanceName"></p>
+
+                </div>
+
+
+                <div class="upload-card">
+
+                    <label>During-event: Event Photos</label>
+
+                    <input
+                        type="file"
+                        id="eventPhotos"
+                        accept="image/*"
+                        multiple
+                    >
+
+                    <div
+                        id="photoPreview"
+                        class="photo-preview"
+                    ></div>
+
+                </div>
+
+
+                <div class="upload-card">
+
+                    <label>Post-event: Certificate</label>
+
+                    <input
+                        type="file"
+                        id="certificate"
+                        accept="image/*,.pdf"
+                    >
+
+                    <p id="certificateName"></p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- 7. SIGNATURES -->
+            <!-- ====================================== -->
+
+            <section class="form-section">
+
+                <h2>7. Signatures</h2>
+
+
+                <div class="form-grid">
+
+
+                    <div>
+
+                        <label>Coordinator</label>
+
+                        <input
+                            type="text"
+                            id="signatureCoordinator"
+                            placeholder="Name"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Head / Committee In-charge</label>
+
+                        <input
+                            type="text"
+                            id="committeeHead"
+                            placeholder="Name"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>IQAC Coordinator</label>
+
+                        <input
+                            type="text"
+                            id="iqacCoordinator"
+                            placeholder="Name"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Principal</label>
+
+                        <input
+                            type="text"
+                            id="principal"
+                            placeholder="Name"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ====================================== -->
+            <!-- BUTTONS -->
+            <!-- ====================================== -->
+
+            <div class="buttons">
+
+                <button
+                    type="button"
+                    onclick="generateReport()"
+                >
+                    Generate & Download PDF Report
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="clear"
+                    onclick="clearPreview()"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+    <!-- ====================================== -->
+    <!-- REPORT PREVIEW -->
+    <!-- ====================================== -->
+
+    <section
+        id="reportPreview"
+        class="report"
+        style="display:none;"
+    ></section>
+
+
+    <!-- ====================================== -->
+    <!-- CAMPUSLOOP JAVASCRIPT -->
+
+    <script src="/js/report.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop - Register</title>
+
+    <link rel="stylesheet" href="/css/registration.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="register-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="register-left">
+
+            <div class="register-logo">
+                CampusLoop
+            </div>
+
+
+            <div class="register-welcome">
+
+                <h1>
+                    Join CampusLoop
+                </h1>
+
+                <p>
+                    Create your account and become
+                    part of your campus activity
+                    management system.
+                </p>
+
+
+                <div class="register-features">
+
+                    <div>
+                        ✓ Manage campus activities
+                    </div>
+
+                    <div>
+                        ✓ Participate in college events
+                    </div>
+
+                    <div>
+                        ✓ Generate activity reports
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="register-right">
+
+
+            <div class="register-box">
+
+                <h2>
+                    Create Account
+                </h2>
+
+                <p class="register-subtitle">
+                    Fill in your details to get started.
+                </p>
+
+
+                <!-- REGISTRATION FORM -->
+
+                <form
+                    action="/register"
+                    method="POST"
+                    class="register-form"
+                >
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group">
+
+                        <label for="full_name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="full_name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ROLE -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            Role
+                        </label>
+
+                        <select
+                            id="role"
+                            name="role"
+                        >
+
+                            <option value="Student">
+                                Student
+                            </option>
+
+                            <option value="Teacher">
+                                Teacher
+                            </option>
+
+                            <option value="Admin">
+                                Admin
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- REGISTER BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="register-btn"
+                    >
+                        Create Account
+                    </button>
+
+
+                </form>
+
+
+                <p class="register-footer">
+                    CampusLoop • College Activity Management
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

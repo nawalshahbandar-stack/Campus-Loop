@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CampusLoop - Events</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6ff;
+            color: #182238;
+        }
+		
+		.back-dashboard {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 16px;
+        background: #eef2ff;
+        color: #3155d9;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 14px;
+        }
+
+       .back-dashboard:hover {
+        background: #dfe6ff;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            padding: 35px 30px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #0d2345;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #65728a;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            margin: 10px 20px 35px;
+            padding: 22px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 17px;
+            border: 1px solid #ccd3df;
+            border-radius: 12px;
+            font-size: 17px;
+        }
+
+        .search-box select {
+            width: 220px;
+            padding: 17px;
+            border: 1px solid #ccd3df;
+            border-radius: 12px;
+            font-size: 17px;
+            background: white;
+        }
+
+        /* =========================
+           EVENTS
+        ========================= */
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            padding: 0 20px 50px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+
+        .event-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .event-icon {
+            width: 72px;
+            height: 72px;
+            background: #eef2ff;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 38px;
+        }
+
+        .status {
+            background: #e5faf2;
+            color: #00966d;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .event-card h2 {
+            margin-top: 25px;
+            font-size: 28px;
+        }
+
+        .event-info {
+            font-size: 17px;
+            line-height: 2;
+            color: #667085;
+        }
+
+        .event-info strong {
+            color: #303b50;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .view-btn {
+            background: #3155d9;
+            color: white;
+        }
+
+        .view-btn:hover {
+            background: #2445bd;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 1000px;
+            margin: auto;
+            border-radius: 22px;
+            padding: 35px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #f0f2f6;
+            font-size: 25px;
+        }
+
+        .modal-content h2 {
+            font-size: 32px;
+            margin-top: 0;
+        }
+
+        .modal-subtitle {
+            color: #70798b;
+            font-size: 18px;
+        }
+
+        /* =========================
+           UPLOAD SECTION
+        ========================= */
+
+        .upload-section {
+            margin-top: 30px;
+            background: #f8f9fc;
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .upload-section h3 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .upload-item {
+            background: white;
+            border: 1px solid #dce1eb;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .upload-item label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .upload-item input {
+            width: 100%;
+        }
+
+        .upload-button {
+            width: 100%;
+            background: #3155d9;
+            color: white;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           IMAGE DISPLAY
+        ========================= */
+
+        .files-section {
+            margin-top: 35px;
+        }
+
+        .files-section h3 {
+            font-size: 24px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .image-card {
+            border: 1px solid #dfe3eb;
+            border-radius: 14px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: contain;
+            background: #f5f6f8;
+            display: block;
+        }
+
+        .image-name {
+            padding: 12px;
+            font-size: 14px;
+            color: #687386;
+            word-break: break-word;
+        }
+
+        .no-files {
+            padding: 25px;
+            background: #f5f6fa;
+            border-radius: 12px;
+            color: #70798b;
+            text-align: center;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box select {
+                width: 100%;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <a href="/teacher" class="back-dashboard">
+        &#8592; Back to Teacher Dashboard
+    </a>
+
+    <h1>&#128197; College Events</h1>
+
+    <p>
+        View events, notices, brochures, attendance
+        and event photos.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="&#128269; Search events..."
+        onkeyup="searchEvents()"
+    >
+
+    <select
+        id="eventFilter"
+        onchange="filterEvents()"
+    >
+
+        <option value="all">
+            All Events
+        </option>
+
+        <option value="completed">
+            Completed
+        </option>
+
+        <option value="upcoming">
+            Upcoming
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- =========================
+     EVENTS
+========================= -->
+
+<div class="events-container">
+
+
+    <!-- TECH FEST -->
+
+    <div
+        class="event-card"
+        data-name="Tech Fest 2026"
+        data-status="completed"
+    >
+
+        <div class="event-top">
+
+            <div class="event-icon">
+                &#128187;
+            </div>
+
+            <div class="status">
+                Completed
+            </div>
+
+        </div>
+
+        <h2>
+            Tech Fest 2026
+        </h2>
+
+        <div class="event-info">
+
+            &#128197; <strong>Date:</strong>
+            15 August 2026
+            <br>
+
+            &#128205; <strong>Venue:</strong>
+            College Auditorium
+            <br>
+
+            &#128101; <strong>Participants:</strong>
+            150
+            <br>
+
+            &#128100; <strong>Coordinator:</strong>
+            Computer Science Department
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="view-btn"
+                onclick="openEvent('Tech Fest 2026')"
+            >
+                &#128065; View Event
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CULTURAL FEST -->
+
+    <div
+        class="event-card"
+        data-name="Cultural Fest 2026"
+        data-status="upcoming"
+    >
+
+        <div class="event-top">
+
+            <div class="event-icon">
+                &#127917;
+            </div>
+
+            <div class="status">
+                Upcoming
+            </div>
+
+        </div>
+
+        <h2>
+            Cultural Fest 2026
+        </h2>
+
+        <div class="event-info">
+
+            &#128197; <strong>Date:</strong>
+            25 August 2026
+            <br>
+
+            &#128205; <strong>Venue:</strong>
+            College Ground
+            <br>
+
+            &#128101; <strong>Participants:</strong>
+            200
+            <br>
+
+            &#128100; <strong>Coordinator:</strong>
+            Cultural Committee
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="view-btn"
+                onclick="openEvent('Cultural Fest 2026')"
+            >
+                &#128065; View Event
+            </button>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================
+     EVENT MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="eventModal"
+>
+
+    <div class="modal-content">
+
+
+        <button
+            class="close-btn"
+            onclick="closeEvent()"
+        >
+            &times;
+        </button>
+
+
+        <h2 id="modalEventName">
+            Event
+        </h2>
+
+        <p class="modal-subtitle">
+            Event information and uploaded images
+        </p>
+
+
+        <!-- =========================
+             UPLOAD
+        ========================= -->
+
+        <div class="upload-section">
+
+            <h3>
+                &#128228; Upload Event Images
+            </h3>
+
+            <p>
+                Upload images for this event.
+            </p>
+
+
+            <form
+                action="/upload-event-files"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <input
+                    type="hidden"
+                    name="eventName"
+                    id="uploadEventName"
+                >
+
+
+                <!-- NOTICE -->
+
+                <div class="upload-item">
+
+                    <label>
+                        &#128196; Notice
+                    </label>
+
+                    <input
+                        type="file"
+                        name="notice"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
+                <!-- BROCHURE -->
+
+                <div class="upload-item">
+
+                    <label>
+                        &#128240; Brochure / Flyer
+                    </label>
+
+                    <input
+                        type="file"
+                        name="brochure"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
+                <!-- ATTENDANCE -->
+
+                <div class="upload-item">
+
+                    <label>
+                        &#128203; Attendance Sheet
+                    </label>
+
+                    <input
+                        type="file"
+                        name="attendance"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
+                <!-- EVENT PHOTOS -->
+
+                <div class="upload-item">
+
+                    <label>
+                        &#128248; Event Photos
+                    </label>
+
+                    <input
+                        type="file"
+                        name="photos"
+                        accept="image/*"
+                        multiple
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="upload-button"
+                >
+                    &#11014; Upload Images
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             UPLOADED IMAGES
+        ========================= -->
+
+        <div class="files-section">
+
+            <h3>
+                &#128444; Uploaded Images
+            </h3>
+
+            <div
+                class="image-grid"
+                id="imageGrid"
+            >
+
+                <div class="no-files">
+                    Loading images...
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* ==========================================
+   OPEN EVENT
+========================================== */
+
+function openEvent(eventName) {
+
+    document.getElementById(
+        "modalEventName"
+    ).textContent = eventName;
+
+    document.getElementById(
+        "uploadEventName"
+    ).value = eventName;
+
+    document.getElementById(
+        "eventModal"
+    ).style.display = "block";
+
+    loadEventImages(eventName);
+
+}
+
+
+/* ==========================================
+   CLOSE EVENT
+========================================== */
+
+function closeEvent() {
+
+    document.getElementById(
+        "eventModal"
+    ).style.display = "none";
+
+}
+
+
+/* ==========================================
+   LOAD EVENT IMAGES
+========================================== */
+
+async function loadEventImages(eventName) {
+
+    const imageGrid =
+        document.getElementById("imageGrid");
+
+    imageGrid.innerHTML = `
+        <div class="no-files">
+            Loading images...
+        </div>
+    `;
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/event-files?eventName=" +
+                encodeURIComponent(eventName)
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load images"
+            );
+
+        }
+
+
+        const files =
+            await response.json();
+
+
+        if (!files || files.length === 0) {
+
+            imageGrid.innerHTML = `
+                <div class="no-files">
+                    No images uploaded for this event yet.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        imageGrid.innerHTML = "";
+
+
+        files.forEach(file => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "image-card";
+
+
+            const image =
+                document.createElement("img");
+
+            image.src =
+                "/uploads/events/" +
+                encodeURIComponent(file);
+
+            image.alt =
+                file;
+
+
+            image.onerror = function() {
+
+                this.style.display = "none";
+
+            };
+
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "image-name";
+
+            name.textContent =
+                file;
+
+
+            card.appendChild(image);
+
+            card.appendChild(name);
+
+            imageGrid.appendChild(card);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        imageGrid.innerHTML = `
+            <div class="no-files">
+                &#9888; Unable to load event images.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ==========================================
+   SEARCH EVENTS
+========================================== */
+
+function searchEvents() {
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".event-card"
+        );
+
+
+    cards.forEach(card => {
+
+        const name =
+            card.dataset.name.toLowerCase();
+
+
+        if (name.includes(search)) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   FILTER EVENTS
+========================================== */
+
+function filterEvents() {
+
+    const filter =
+        document
+            .getElementById("eventFilter")
+            .value;
+
+
+    const cards =
+        document.querySelectorAll(
+            ".event-card"
+        );
+
+
+    cards.forEach(card => {
+
+        const status =
+            card.dataset.status;
+
+
+        if (
+            filter === "all" ||
+            filter === status
+        ) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================== */
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("eventModal");
+
+
+    if (event.target === modal) {
+
+        closeEvent();
+
+    }
+
+};
+
+
+</script>
+
+
+</body>
+
+</html>
